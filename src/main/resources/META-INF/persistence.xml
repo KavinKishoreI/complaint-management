@@ -8,9 +8,7 @@
     <persistence-unit name="complaint-management-pu" transaction-type="RESOURCE_LOCAL">
         
         <!-- Entity classes will be added here as they are created -->
-        <class>com.complaintmanagement.entity.Complaint</class>
-        <class>com.complaintmanagement.entity.Customer</class>
-        <class>com.complaintmanagement.entity.Status</class>
+        <!-- No entity classes configured yet -->
         
         <!-- Database Connection Properties -->
         <!-- These will be overridden by system properties for security -->
