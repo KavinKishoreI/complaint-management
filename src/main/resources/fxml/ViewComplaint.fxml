@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.complaintmanagement.controller.ViewComplaintController"
+      styleClass="root" stylesheets="@../css/view-complaint.css">
+    
+    <!-- Header -->
+    <HBox styleClass="header" alignment="CENTER_LEFT" spacing="15.0">
+        <padding>
+            <Insets top="20.0" right="30.0" bottom="20.0" left="30.0"/>
+        </padding>
+        
+        <Button fx:id="btnBack" text="← Back" styleClass="back-button" onAction="#handleBack"/>
+        
+        <Region HBox.hgrow="ALWAYS"/>
+        
+        <Label text="Complaint Details" styleClass="header-title">
+            <font>
+                <Font name="Arial Bold" size="24.0"/>
+            </font>
+        </Label>
+        
+        <Region HBox.hgrow="ALWAYS"/>
+        
+        <Label fx:id="lblUserInfo" text="User Info" styleClass="user-info-label"/>
+    </HBox>
+    
+    <!-- Main Content -->
+    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="scroll-pane">
+        <VBox spacing="20.0" styleClass="content-container">
+            <padding>
+                <Insets top="30.0" right="30.0" bottom="30.0" left="30.0"/>
+            </padding>
+            
+            <!-- Complaint Information Card -->
+            <VBox spacing="15.0" styleClass="complaint-card">
+                <padding>
+                    <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+                </padding>
+                
+                <!-- Card Header -->
+                <HBox alignment="CENTER_LEFT" spacing="15.0">
+                    <Label text="📋 Complaint Information" styleClass="card-title">
+                        <font>
+                            <Font name="Arial Bold" size="18.0"/>
+                        </font>
+                    </Label>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="lblStatus" text="UNREAD" styleClass="status-badge"/>
+                </HBox>
+                
+                <Separator/>
+                
+                <!-- Complaint Details Grid -->
+                <GridPane hgap="20.0" vgap="15.0">
+                    <!-- Row 0: ID and Date -->
+                    <Label text="Complaint ID:" styleClass="field-label" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <Label fx:id="lblComplaintId" text="#12345" styleClass="field-value" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                    
+                    <Label text="Filed On:" styleClass="field-label" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                    <Label fx:id="lblDate" text="Oct 19, 2025" styleClass="field-value" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+                    
+                    <!-- Row 1: Type and Department -->
+                    <Label text="Complaint Type:" styleClass="field-label" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <Label fx:id="lblType" text="Water Supply" styleClass="field-value" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                    
+                    <Label text="Department:" styleClass="field-label" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                    <Label fx:id="lblDepartment" text="Water Supply Department" styleClass="field-value" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+                    
+                    <!-- Row 2: Title -->
+                    <Label text="Title:" styleClass="field-label" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <Label fx:id="lblTitle" text="No water supply in my area" styleClass="field-value" wrapText="true" 
+                           GridPane.rowIndex="2" GridPane.columnIndex="1" GridPane.columnSpan="3"/>
+                    
+                    <!-- Row 3: Description -->
+                    <Label text="Description:" styleClass="field-label" GridPane.rowIndex="3" GridPane.columnIndex="0" 
+                           GridPane.valignment="TOP"/>
+                    <TextArea fx:id="txtDescription" editable="false" wrapText="true" styleClass="description-area"
+                              prefHeight="100.0" GridPane.rowIndex="3" GridPane.columnIndex="1" GridPane.columnSpan="3"/>
+                </GridPane>
+            </VBox>
+            
+            <!-- Responses Section -->
+            <VBox spacing="15.0" styleClass="responses-section">
+                <padding>
+                    <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+                </padding>
+                
+                <!-- Responses Header -->
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <Label text="💬 Responses" styleClass="card-title">
+                        <font>
+                            <Font name="Arial Bold" size="18.0"/>
+                        </font>
+                    </Label>
+                    <Label fx:id="lblResponseCount" text="(0)" styleClass="response-count"/>
+                </HBox>
+                
+                <Separator/>
+                
+                <!-- Responses List -->
+                <VBox fx:id="responsesContainer" spacing="15.0">
+                    <!-- Responses will be added here dynamically -->
+                    <Label fx:id="lblNoResponses" text="No responses yet. Your complaint is being reviewed." 
+                           styleClass="no-responses-label" visible="true"/>
+                </VBox>
+            </VBox>
+            
+            <!-- Action Buttons -->
+            <HBox spacing="15.0" alignment="CENTER">
+                <padding>
+                    <Insets top="10.0"/>
+                </padding>
+                
+                <Button fx:id="btnRefresh" text="🔄 Refresh" styleClass="action-button" onAction="#handleRefresh"/>
+                <Button fx:id="btnClose" text="Close" styleClass="secondary-button" onAction="#handleBack"/>
+            </HBox>
+        </VBox>
+    </ScrollPane>
+</VBox>

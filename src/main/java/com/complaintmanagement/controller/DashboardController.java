@@ -79,6 +79,9 @@ public class DashboardController {
     @FXML
     private TableColumn<ComplaintRow, String> colDate;
     
+    @FXML
+    private TableColumn<ComplaintRow, Void> colAction;
+    
     // User information passed from login
     private String userType;
     private Long userId;
@@ -111,6 +114,55 @@ public class DashboardController {
         colDepartment.setCellValueFactory(new PropertyValueFactory<>("department"));
         colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        
+        // Add View button in Action column
+        colAction.setCellFactory(param -> new javafx.scene.control.TableCell<>() {
+            private final javafx.scene.control.Button viewButton = new javafx.scene.control.Button("View");
+            
+            {
+                viewButton.setStyle(
+                    "-fx-background-color: linear-gradient(to bottom, #667eea, #764ba2);" +
+                    "-fx-text-fill: white;" +
+                    "-fx-font-weight: bold;" +
+                    "-fx-padding: 5 15;" +
+                    "-fx-background-radius: 5;" +
+                    "-fx-cursor: hand;"
+                );
+                
+                viewButton.setOnMouseEntered(e -> viewButton.setStyle(
+                    "-fx-background-color: linear-gradient(to bottom, #5568d3, #6a3f8f);" +
+                    "-fx-text-fill: white;" +
+                    "-fx-font-weight: bold;" +
+                    "-fx-padding: 5 15;" +
+                    "-fx-background-radius: 5;" +
+                    "-fx-cursor: hand;"
+                ));
+                
+                viewButton.setOnMouseExited(e -> viewButton.setStyle(
+                    "-fx-background-color: linear-gradient(to bottom, #667eea, #764ba2);" +
+                    "-fx-text-fill: white;" +
+                    "-fx-font-weight: bold;" +
+                    "-fx-padding: 5 15;" +
+                    "-fx-background-radius: 5;" +
+                    "-fx-cursor: hand;"
+                ));
+                
+                viewButton.setOnAction(event -> {
+                    ComplaintRow row = getTableView().getItems().get(getIndex());
+                    openComplaintDetails(row.getComplaintId());
+                });
+            }
+            
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(viewButton);
+                }
+            }
+        });
     }
     
     /**
@@ -154,7 +206,7 @@ public class DashboardController {
             // Pending complaints (UNREAD + READ)
             TypedQuery<Long> pendingQuery = em.createQuery(
                 "SELECT COUNT(c) FROM Complaint c WHERE c.citizen.citizen_id = :citizenId " +
-                "AND (c.status = :unread OR c.status = :read)", 
+                "AND (c.resolve_status = :unread OR c.resolve_status = :read)", 
                 Long.class);
             pendingQuery.setParameter("citizenId", userId);
             pendingQuery.setParameter("unread", ComplaintStatus.UNREAD);
@@ -165,7 +217,7 @@ public class DashboardController {
             // In Progress complaints
             TypedQuery<Long> inProgressQuery = em.createQuery(
                 "SELECT COUNT(c) FROM Complaint c WHERE c.citizen.citizen_id = :citizenId " +
-                "AND c.status = :inProgress", 
+                "AND c.resolve_status = :inProgress", 
                 Long.class);
             inProgressQuery.setParameter("citizenId", userId);
             inProgressQuery.setParameter("inProgress", ComplaintStatus.IN_PROGRESS);
@@ -175,7 +227,7 @@ public class DashboardController {
             // Resolved complaints (CLOSED)
             TypedQuery<Long> resolvedQuery = em.createQuery(
                 "SELECT COUNT(c) FROM Complaint c WHERE c.citizen.citizen_id = :citizenId " +
-                "AND c.status = :closed", 
+                "AND c.resolve_status = :closed", 
                 Long.class);
             resolvedQuery.setParameter("citizenId", userId);
             resolvedQuery.setParameter("closed", ComplaintStatus.CLOSED);
@@ -295,6 +347,38 @@ public class DashboardController {
     private void handleRefresh(ActionEvent event) {
         System.out.println("Refreshing dashboard data...");
         loadDashboardData();
+    }
+    
+    /**
+     * Open complaint details view
+     */
+    private void openComplaintDetails(String complaintIdStr) {
+        try {
+            Long complaintId = Long.parseLong(complaintIdStr);
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ViewComplaint.fxml"));
+            Parent root = loader.load();
+            
+            // Get controller and pass complaint information
+            ViewComplaintController viewController = loader.getController();
+            viewController.initializeData(complaintId, userId, userName);
+            
+            // Apply CSS
+            Scene scene = new Scene(root, 1000, 700);
+            scene.getStylesheets().add(getClass().getResource("/css/view-complaint.css").toExternalForm());
+            
+            // Get current stage and set new scene
+            Stage stage = (Stage) tblRecentComplaints.getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Complaint Management System - View Complaint");
+            stage.show();
+            
+            System.out.println("Opened complaint details for ID: " + complaintId);
+            
+        } catch (Exception e) {
+            System.err.println("Error opening complaint details: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
     
     /**

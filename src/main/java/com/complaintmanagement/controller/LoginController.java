@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import java.io.IOException;
 
 /**
  * Controller class for the Login page.
@@ -161,22 +162,45 @@ public class LoginController {
      */
     private void openDashboard(String userType, Long userId, String userName) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Dashboard.fxml"));
-            Parent root = loader.load();
-            
-            // Get the dashboard controller and pass user information
-            DashboardController dashboardController = loader.getController();
-            dashboardController.initializeUser(userType, userId, userName);
-            
-            // Get current stage and set new scene
-            Stage stage = (Stage) loginButton.getScene().getWindow();
-            Scene scene = new Scene(root, 1000, 700);
-            stage.setScene(scene);
-            stage.setTitle("Complaint Management System - Dashboard");
-            stage.setResizable(true);
-            stage.show();
-            
-            System.out.println("Dashboard opened for " + userType + ": " + userName);
+            if ("Authority".equals(userType)) {
+                // Open Authority Dashboard
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AuthorityDashboard.fxml"));
+                Parent root = loader.load();
+                
+                // Get the authority dashboard controller and pass information
+                AuthorityDashboardController authorityController = loader.getController();
+                authorityController.initializeAuthority(userId, userName);
+                
+                // Get current stage and set new scene
+                Stage stage = (Stage) loginButton.getScene().getWindow();
+                Scene scene = new Scene(root, 1000, 700);
+                scene.getStylesheets().add(getClass().getResource("/css/authority-dashboard.css").toExternalForm());
+                stage.setScene(scene);
+                stage.setTitle("Complaint Management System - Authority Dashboard");
+                stage.setResizable(true);
+                stage.show();
+                
+                System.out.println("Authority Dashboard opened for: " + userName);
+                
+            } else {
+                // Open Citizen Dashboard
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Dashboard.fxml"));
+                Parent root = loader.load();
+                
+                // Get the dashboard controller and pass user information
+                DashboardController dashboardController = loader.getController();
+                dashboardController.initializeUser(userType, userId, userName);
+                
+                // Get current stage and set new scene
+                Stage stage = (Stage) loginButton.getScene().getWindow();
+                Scene scene = new Scene(root, 1000, 700);
+                stage.setScene(scene);
+                stage.setTitle("Complaint Management System - Dashboard");
+                stage.setResizable(true);
+                stage.show();
+                
+                System.out.println("Dashboard opened for " + userType + ": " + userName);
+            }
             
         } catch (Exception e) {
             System.err.println("Error opening dashboard: " + e.getMessage());

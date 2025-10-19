@@ -1,0 +1,217 @@
+/* View Complaint Page - Dark Mode Styles */
+
+.root {
+  -fx-background-color: #1a1a1a;
+}
+
+/* Header */
+.header {
+  -fx-background-color: linear-gradient(to right, #667eea 0%, #764ba2 100%);
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 2);
+}
+
+.header-title {
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 24px;
+  -fx-font-weight: bold;
+}
+
+.back-button {
+  -fx-background-color: rgba(255, 255, 255, 0.2);
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 14px;
+  -fx-font-weight: bold;
+  -fx-padding: 10 20;
+  -fx-background-radius: 5;
+  -fx-cursor: hand;
+}
+
+.back-button:hover {
+  -fx-background-color: rgba(255, 255, 255, 0.3);
+}
+
+.user-info-label {
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 14px;
+}
+
+/* Scroll Pane */
+.scroll-pane {
+  -fx-background-color: transparent;
+  -fx-background: #1a1a1a;
+}
+
+.scroll-pane .viewport {
+  -fx-background-color: transparent;
+}
+
+.scroll-pane > .scroll-bar:vertical {
+  -fx-background-color: #2a2a2a;
+  -fx-pref-width: 10px;
+}
+
+.scroll-pane > .scroll-bar:vertical .thumb {
+  -fx-background-color: #4a4a4a;
+  -fx-background-radius: 5px;
+}
+
+.scroll-pane > .scroll-bar:vertical .thumb:hover {
+  -fx-background-color: #5a5a5a;
+}
+
+/* Content Container */
+.content-container {
+  -fx-background-color: #1a1a1a;
+}
+
+/* Complaint Card */
+.complaint-card {
+  -fx-background-color: #252525;
+  -fx-background-radius: 10;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 3);
+}
+
+.card-title {
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 18px;
+  -fx-font-weight: bold;
+}
+
+/* Status Badge */
+.status-badge {
+  -fx-background-color: #667eea;
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 12px;
+  -fx-font-weight: bold;
+  -fx-padding: 5 15;
+  -fx-background-radius: 15;
+}
+
+/* Separator */
+.separator .line {
+  -fx-border-color: #3a3a3a;
+  -fx-border-width: 1px;
+}
+
+/* Field Labels and Values */
+.field-label {
+  -fx-text-fill: #9e9e9e;
+  -fx-font-size: 13px;
+  -fx-font-weight: bold;
+}
+
+.field-value {
+  -fx-text-fill: #e0e0e0;
+  -fx-font-size: 14px;
+}
+
+/* Description Area */
+.description-area {
+  -fx-control-inner-background: #1e1e1e;
+  -fx-background-color: #1e1e1e;
+  -fx-text-fill: #e0e0e0;
+  -fx-border-color: #3a3a3a;
+  -fx-border-radius: 5;
+  -fx-background-radius: 5;
+  -fx-font-size: 13px;
+}
+
+.description-area .content {
+  -fx-background-color: #1e1e1e;
+}
+
+.description-area .scroll-pane {
+  -fx-background-color: #1e1e1e;
+}
+
+/* Responses Section */
+.responses-section {
+  -fx-background-color: #252525;
+  -fx-background-radius: 10;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0, 0, 3);
+}
+
+.response-count {
+  -fx-text-fill: #9e9e9e;
+  -fx-font-size: 14px;
+}
+
+.no-responses-label {
+  -fx-text-fill: #7e7e7e;
+  -fx-font-size: 14px;
+  -fx-font-style: italic;
+  -fx-padding: 20 0;
+  -fx-alignment: center;
+}
+
+/* Individual Response Card */
+.response-card {
+  -fx-background-color: #2a2a2a;
+  -fx-background-radius: 8;
+  -fx-padding: 15;
+  -fx-border-color: #3a3a3a;
+  -fx-border-width: 1;
+  -fx-border-radius: 8;
+}
+
+.response-header {
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 14px;
+  -fx-font-weight: bold;
+}
+
+.response-date {
+  -fx-text-fill: #9e9e9e;
+  -fx-font-size: 12px;
+}
+
+.response-text {
+  -fx-text-fill: #e0e0e0;
+  -fx-font-size: 13px;
+  -fx-wrap-text: true;
+}
+
+.authority-name {
+  -fx-text-fill: #667eea;
+  -fx-font-size: 13px;
+  -fx-font-weight: bold;
+}
+
+/* Action Buttons */
+.action-button {
+  -fx-background-color: linear-gradient(to bottom, #667eea, #764ba2);
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 14px;
+  -fx-font-weight: bold;
+  -fx-padding: 12 30;
+  -fx-background-radius: 5;
+  -fx-cursor: hand;
+  -fx-effect: dropshadow(gaussian, rgba(102, 126, 234, 0.4), 10, 0, 0, 2);
+}
+
+.action-button:hover {
+  -fx-background-color: linear-gradient(to bottom, #5568d3, #6a3f8f);
+  -fx-effect: dropshadow(gaussian, rgba(102, 126, 234, 0.6), 15, 0, 0, 3);
+}
+
+.action-button:pressed {
+  -fx-background-color: linear-gradient(to bottom, #4a5abf, #5d3580);
+}
+
+.secondary-button {
+  -fx-background-color: #3a3a3a;
+  -fx-text-fill: #e0e0e0;
+  -fx-font-size: 14px;
+  -fx-font-weight: bold;
+  -fx-padding: 12 30;
+  -fx-background-radius: 5;
+  -fx-cursor: hand;
+}
+
+.secondary-button:hover {
+  -fx-background-color: #4a4a4a;
+}
+
+.secondary-button:pressed {
+  -fx-background-color: #2a2a2a;
+}

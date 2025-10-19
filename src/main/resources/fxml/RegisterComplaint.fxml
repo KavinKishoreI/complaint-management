@@ -110,25 +110,7 @@
                            text="" 
                            styleClass="error-label"
                            visible="false"/>
-                </VBox>
-                
-                <!-- Department Section -->
-                <VBox spacing="8.0" styleClass="field-section">
-                    <Label text="Department *" styleClass="field-label">
-                        <font>
-                            <Font name="Arial Bold" size="14.0"/>
-                        </font>
-                    </Label>
-                    <ComboBox fx:id="departmentCombo" 
-                              promptText="Select the relevant department" 
-                              styleClass="combo-box"
-                              prefWidth="400.0"
-                              prefHeight="40.0"/>
-                    <Label fx:id="deptErrorLabel" 
-                           text="" 
-                           styleClass="error-label"
-                           visible="false"/>
-                    <Label text="Tip: Select the department best suited to handle your complaint" 
+                    <Label text="ℹ️ The system will automatically assign your complaint to the appropriate department" 
                            styleClass="help-text">
                         <font>
                             <Font size="11.0"/>

@@ -39,8 +39,9 @@ public class RegisterComplaintController {
     @FXML
     private ComboBox<String> complaintTypeCombo;
     
-    @FXML
-    private ComboBox<Department> departmentCombo;
+    // Department is now auto-assigned based on complaint type
+    // @FXML
+    // private ComboBox<Department> departmentCombo;
     
     @FXML
     private TextArea descriptionArea;
@@ -54,8 +55,9 @@ public class RegisterComplaintController {
     @FXML
     private Label typeErrorLabel;
     
-    @FXML
-    private Label deptErrorLabel;
+    // Department error label no longer needed (auto-assigned)
+    // @FXML
+    // private Label deptErrorLabel;
     
     @FXML
     private Label descErrorLabel;
@@ -102,31 +104,14 @@ public class RegisterComplaintController {
         // Set up complaint types
         setupComplaintTypes();
         
-        // Load departments from database
-        loadDepartments();
+        // Note: Departments are now auto-assigned based on complaint type
+        // No need to load departments for manual selection
         
         // Set up character counter for description
         setupCharacterCounter();
         
         // Set up field validation listeners
         setupValidationListeners();
-        
-        // Configure custom cell factory for department combo box
-        departmentCombo.setCellFactory(lv -> new ListCell<Department>() {
-            @Override
-            protected void updateItem(Department item, boolean empty) {
-                super.updateItem(item, empty);
-                setText(empty || item == null ? null : item.getDept_name());
-            }
-        });
-        
-        departmentCombo.setButtonCell(new ListCell<Department>() {
-            @Override
-            protected void updateItem(Department item, boolean empty) {
-                super.updateItem(item, empty);
-                setText(empty || item == null ? null : item.getDept_name());
-            }
-        });
     }
     
     /**
@@ -151,28 +136,6 @@ public class RegisterComplaintController {
             "Other"
         );
         complaintTypeCombo.setItems(complaintTypes);
-    }
-    
-    /**
-     * Load departments from database
-     */
-    private void loadDepartments() {
-        try {
-            TypedQuery<Department> query = em.createQuery(
-                "SELECT d FROM Department d ORDER BY d.dept_name", 
-                Department.class
-            );
-            List<Department> departments = query.getResultList();
-            
-            ObservableList<Department> deptList = FXCollections.observableArrayList(departments);
-            departmentCombo.setItems(deptList);
-            
-            System.out.println("Loaded " + departments.size() + " departments");
-        } catch (Exception e) {
-            System.err.println("Error loading departments: " + e.getMessage());
-            e.printStackTrace();
-            showError("Could not load departments. Please refresh the page.");
-        }
     }
     
     /**
@@ -206,12 +169,6 @@ public class RegisterComplaintController {
         complaintTypeCombo.valueProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 typeErrorLabel.setVisible(false);
-            }
-        });
-        
-        departmentCombo.valueProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                deptErrorLabel.setVisible(false);
             }
         });
         
@@ -254,11 +211,23 @@ public class RegisterComplaintController {
         statusLabel.setVisible(false);
         
         try {
+            // Get complaint type
+            String complaintType = complaintTypeCombo.getValue();
+            
+            // Automatically determine department based on complaint type
+            Department assignedDepartment = getDepartmentForComplaintType(complaintType);
+            
+            if (assignedDepartment == null) {
+                showError("Could not assign department. Please try again.");
+                submitButton.setDisable(false);
+                return;
+            }
+            
             // Create new complaint object
             Complaint complaint = new Complaint();
             complaint.setComplaint_title(titleField.getText().trim());
-            complaint.setComplaint_type(complaintTypeCombo.getValue());
-            complaint.setDepartment(departmentCombo.getValue());
+            complaint.setComplaint_type(complaintType);
+            complaint.setDepartment(assignedDepartment);
             complaint.setComplaint_descp(descriptionArea.getText().trim());
             complaint.setResolve_status(ComplaintStatus.UNREAD);
             complaint.setComplaint_date(new Date());
@@ -333,7 +302,6 @@ public class RegisterComplaintController {
         // Reset error messages
         titleErrorLabel.setVisible(false);
         typeErrorLabel.setVisible(false);
-        deptErrorLabel.setVisible(false);
         descErrorLabel.setVisible(false);
         statusLabel.setVisible(false);
         
@@ -356,12 +324,7 @@ public class RegisterComplaintController {
             isValid = false;
         }
         
-        // Validate department
-        if (departmentCombo.getValue() == null) {
-            deptErrorLabel.setText("❌ Please select a department");
-            deptErrorLabel.setVisible(true);
-            isValid = false;
-        }
+        // Note: Department is now auto-assigned based on complaint type
         
         // Validate description
         String description = descriptionArea.getText().trim();
@@ -393,12 +356,10 @@ public class RegisterComplaintController {
     private void handleClear(ActionEvent event) {
         titleField.clear();
         complaintTypeCombo.setValue(null);
-        departmentCombo.setValue(null);
         descriptionArea.clear();
         
         titleErrorLabel.setVisible(false);
         typeErrorLabel.setVisible(false);
-        deptErrorLabel.setVisible(false);
         descErrorLabel.setVisible(false);
         statusLabel.setVisible(false);
         
@@ -442,7 +403,6 @@ public class RegisterComplaintController {
     private boolean hasFormData() {
         return !titleField.getText().trim().isEmpty() ||
                complaintTypeCombo.getValue() != null ||
-               departmentCombo.getValue() != null ||
                !descriptionArea.getText().trim().isEmpty();
     }
     
@@ -461,7 +421,7 @@ public class RegisterComplaintController {
             stage.setTitle("Complaint Management System - Dashboard");
             stage.show();
             
-            System.out.println("Navigated back to Dashboard");
+            System.out.println("Navigated back to Dashboard with user: " + currentCitizenName);
             
         } catch (Exception e) {
             System.err.println("Error navigating to dashboard: " + e.getMessage());
@@ -498,6 +458,98 @@ public class RegisterComplaintController {
         statusLabel.getStyleClass().clear();
         statusLabel.getStyleClass().addAll("status-label", "status-warning");
         statusLabel.setVisible(true);
+    }
+    
+    /**
+     * Automatically determines the appropriate department based on complaint type
+     * @param complaintType The type of complaint
+     * @return The appropriate Department entity, or null if not found
+     */
+    private Department getDepartmentForComplaintType(String complaintType) {
+        String departmentName = null;
+        
+        // Map complaint types to departments (matching database department names)
+        switch (complaintType) {
+            case "Infrastructure Issue":
+            case "Illegal Construction":
+                departmentName = "Public Works Department";
+                break;
+                
+            case "Road Maintenance":
+                departmentName = "Roads and Highways Department";
+                break;
+                
+            case "Public Safety":
+                departmentName = "Public Safety Department";
+                break;
+                
+            case "Traffic Management":
+                departmentName = "Traffic Management Department";
+                break;
+                
+            case "Sanitation & Hygiene":
+            case "Garbage Collection":
+                departmentName = "Sanitation and Waste Management";
+                break;
+                
+            case "Drainage Problem":
+                departmentName = "Drainage and Sewerage Department";
+                break;
+                
+            case "Water Supply":
+                departmentName = "Water Supply Department";
+                break;
+                
+            case "Electricity":
+                departmentName = "Electricity Department";
+                break;
+                
+            case "Street Lighting":
+                departmentName = "Street Lighting Department";
+                break;
+                
+            case "Noise Pollution":
+            case "Air Pollution":
+                departmentName = "Environmental Protection Department";
+                break;
+                
+            case "Public Transport":
+                departmentName = "Public Transport Department";
+                break;
+                
+            case "Other":
+                // Default to General Administration for unclassified complaints
+                departmentName = "General Administration";
+                break;
+                
+            default:
+                // Fallback to General Administration
+                departmentName = "General Administration";
+                break;
+        }
+        
+        // Query database for the department
+        try {
+            TypedQuery<Department> query = em.createQuery(
+                "SELECT d FROM Department d WHERE d.dept_name = :deptName",
+                Department.class
+            );
+            query.setParameter("deptName", departmentName);
+            List<Department> results = query.getResultList();
+            
+            if (!results.isEmpty()) {
+                Department dept = results.get(0);
+                System.out.println("Auto-assigned department: " + dept.getDept_name() + " for complaint type: " + complaintType);
+                return dept;
+            } else {
+                System.err.println("Department not found: " + departmentName);
+                return null;
+            }
+        } catch (Exception e) {
+            System.err.println("Error querying department: " + e.getMessage());
+            e.printStackTrace();
+            return null;
+        }
     }
     
     /**
