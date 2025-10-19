@@ -65,8 +65,22 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>database-test</id>
+                        <configuration>
+                            <mainClass>com.complaintmanagement.DatabaseTest</mainClass>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>system-test</id>
+                        <configuration>
+                            <mainClass>com.complaintmanagement.CompleteSystemTest</mainClass>
+                        </configuration>
+                    </execution>
+                </executions>
                 <configuration>
-                    <mainClass>com.complaintmanagement.DatabaseTest</mainClass>
+                    <mainClass>com.complaintmanagement.CompleteSystemTest</mainClass>
                 </configuration>
             </plugin>
         </plugins>

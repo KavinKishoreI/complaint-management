@@ -1,6 +1,5 @@
 package com.complaintmanagement.controller;
 
-import com.complaintmanagement.model.Authority;
 import com.complaintmanagement.model.Complaint;
 import com.complaintmanagement.model.Response;
 import jakarta.persistence.EntityManager;

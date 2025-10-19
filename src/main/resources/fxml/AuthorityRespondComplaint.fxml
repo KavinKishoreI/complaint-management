@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.complaintmanagement.controller.AuthorityRespondController"
+            fitToWidth="true"
+            styleClass="scroll-pane">
+    
+    <VBox spacing="20.0" styleClass="container">
+        <padding>
+            <Insets top="30.0" right="40.0" bottom="30.0" left="40.0"/>
+        </padding>
+        
+        <!-- Header -->
+        <VBox styleClass="header-section" spacing="10.0">
+            <Label text="Respond to Complaint" styleClass="page-title">
+                <font>
+                    <Font name="Arial Bold" size="28.0"/>
+                </font>
+            </Label>
+            <Label fx:id="complaintIdLabel" text="Complaint ID: #" styleClass="subtitle">
+                <font>
+                    <Font size="14.0"/>
+                </font>
+            </Label>
+        </VBox>
+        
+        <!-- Complaint Details Card -->
+        <VBox styleClass="card" spacing="15.0">
+            <padding>
+                <Insets top="20.0" right="25.0" bottom="20.0" left="25.0"/>
+            </padding>
+            
+            <Label text="Complaint Details" styleClass="section-title">
+                <font>
+                    <Font name="Arial Bold" size="18.0"/>
+                </font>
+            </Label>
+            
+            <GridPane hgap="15.0" vgap="12.0">
+                <!-- Row 0 -->
+                <Label text="Title:" styleClass="detail-label" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <font><Font name="Arial Bold" size="13.0"/></font>
+                </Label>
+                <Label fx:id="titleLabel" text="-" styleClass="detail-value" GridPane.columnIndex="1" GridPane.rowIndex="0" wrapText="true" maxWidth="500.0">
+                    <font><Font size="13.0"/></font>
+                </Label>
+                
+                <!-- Row 1 -->
+                <Label text="Type:" styleClass="detail-label" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    <font><Font name="Arial Bold" size="13.0"/></font>
+                </Label>
+                <Label fx:id="typeLabel" text="-" styleClass="detail-value" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <font><Font size="13.0"/></font>
+                </Label>
+                
+                <!-- Row 2 -->
+                <Label text="Filed By:" styleClass="detail-label" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                    <font><Font name="Arial Bold" size="13.0"/></font>
+                </Label>
+                <Label fx:id="citizenLabel" text="-" styleClass="detail-value" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <font><Font size="13.0"/></font>
+                </Label>
+                
+                <!-- Row 3 -->
+                <Label text="Status:" styleClass="detail-label" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                    <font><Font name="Arial Bold" size="13.0"/></font>
+                </Label>
+                <Label fx:id="statusLabel" text="-" styleClass="detail-value status-badge" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <font><Font size="13.0"/></font>
+                </Label>
+                
+                <!-- Row 4 -->
+                <Label text="Filed On:" styleClass="detail-label" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                    <font><Font name="Arial Bold" size="13.0"/></font>
+                </Label>
+                <Label fx:id="dateLabel" text="-" styleClass="detail-value" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                    <font><Font size="13.0"/></font>
+                </Label>
+                
+                <!-- Row 5 -->
+                <Label text="Description:" styleClass="detail-label" GridPane.columnIndex="0" GridPane.rowIndex="5">
+                    <font><Font name="Arial Bold" size="13.0"/></font>
+                </Label>
+                <Label fx:id="descriptionLabel" text="-" styleClass="detail-value" wrapText="true" maxWidth="500.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                    <font><Font size="13.0"/></font>
+                </Label>
+            </GridPane>
+        </VBox>
+        
+        <!-- Previous Responses Section -->
+        <VBox fx:id="responsesContainer" styleClass="card" spacing="15.0" visible="false" managed="false">
+            <padding>
+                <Insets top="20.0" right="25.0" bottom="20.0" left="25.0"/>
+            </padding>
+            
+            <Label text="Previous Responses" styleClass="section-title">
+                <font>
+                    <Font name="Arial Bold" size="18.0"/>
+                </font>
+            </Label>
+            
+            <VBox fx:id="responsesList" spacing="10.0"/>
+        </VBox>
+        
+        <!-- Response Form Card -->
+        <VBox styleClass="card" spacing="15.0">
+            <padding>
+                <Insets top="20.0" right="25.0" bottom="20.0" left="25.0"/>
+            </padding>
+            
+            <Label text="Add Your Response" styleClass="section-title">
+                <font>
+                    <Font name="Arial Bold" size="18.0"/>
+                </font>
+            </Label>
+            
+            <VBox spacing="8.0">
+                <Label text="Response Message:" styleClass="field-label">
+                    <font><Font size="13.0"/></font>
+                </Label>
+                <TextArea fx:id="responseTextArea"
+                         promptText="Enter your response to the citizen's complaint..."
+                         wrapText="true"
+                         prefRowCount="6"
+                         styleClass="text-area"/>
+            </VBox>
+            
+            <Label fx:id="errorLabel" text="" styleClass="error-label" visible="false" wrapText="true">
+                <font><Font size="12.0"/></font>
+            </Label>
+            
+            <!-- Action Buttons -->
+            <HBox spacing="15.0" alignment="CENTER_LEFT">
+                <Button fx:id="submitButton"
+                       text="Submit Response"
+                       onAction="#handleSubmitResponse"
+                       styleClass="submit-button">
+                    <font>
+                        <Font name="Arial Bold" size="14.0"/>
+                    </font>
+                </Button>
+                
+                <Button fx:id="closeTicketButton"
+                       text="Close Ticket"
+                       onAction="#handleCloseTicket"
+                       styleClass="close-button">
+                    <font>
+                        <Font name="Arial Bold" size="13.0"/>
+                    </font>
+                </Button>
+                
+                <Button fx:id="backButton"
+                       text="Back to Dashboard"
+                       onAction="#handleBack"
+                       styleClass="back-button">
+                    <font>
+                        <Font size="13.0"/>
+                    </font>
+                </Button>
+            </HBox>
+        </VBox>
+        
+    </VBox>
+</ScrollPane>

@@ -335,13 +335,35 @@ public class AuthorityDashboardController {
      * Open complaint response page
      */
     private void openComplaintResponse(String complaintIdStr) {
-        System.out.println("Opening response page for complaint: " + complaintIdStr);
-        // This will be implemented in Step 6
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Coming Soon");
-        alert.setHeaderText("Respond to Complaint #" + complaintIdStr);
-        alert.setContentText("Response functionality will be added in Step 6.");
-        alert.showAndWait();
+        try {
+            Long complaintId = Long.parseLong(complaintIdStr);
+            System.out.println("Opening response page for complaint: " + complaintId);
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AuthorityRespondComplaint.fxml"));
+            Parent root = loader.load();
+            
+            // Pass data to response controller
+            AuthorityRespondController controller = loader.getController();
+            controller.initializeData(authorityId, authorityUsername, complaintId);
+            
+            // Get current stage and set new scene
+            Stage stage = (Stage) tblComplaints.getScene().getWindow();
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/css/authority-respond.css").toExternalForm());
+            stage.setScene(scene);
+            stage.setTitle("Respond to Complaint");
+            
+            System.out.println("Navigated to response page");
+            
+        } catch (Exception e) {
+            System.err.println("Error opening response page: " + e.getMessage());
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Navigation Error");
+            alert.setContentText("Could not open response page. Please try again.");
+            alert.showAndWait();
+        }
     }
 
     /**
