@@ -11,6 +11,7 @@
         <!-- No entity classes configured yet -->
         
         <!-- Entity classes -->
+        <class>com.complaintmanagement.model.Department</class>
         <class>com.complaintmanagement.model.Citizen</class>
         <class>com.complaintmanagement.model.Complaint</class>
         <class>com.complaintmanagement.model.Authority</class>

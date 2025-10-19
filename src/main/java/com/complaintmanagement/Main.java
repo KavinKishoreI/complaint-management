@@ -15,21 +15,23 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            // Load the Dashboard FXML file with its controller
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Dashboard.fxml"));
+            // Load the Login FXML file with its controller
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
             Parent root = loader.load();
             
-            // Create scene with the loaded FXML
-            Scene scene = new Scene(root, 800, 600);
+            // Load the login CSS
+            Scene scene = new Scene(root, 500, 650);
+            scene.getStylesheets().add(getClass().getResource("/css/login.css").toExternalForm());
             
             // Configure the primary stage
-            primaryStage.setTitle("Complaint Management System");
+            primaryStage.setTitle("Complaint Management System - Login");
             primaryStage.setScene(scene);
+            primaryStage.setResizable(false);
             primaryStage.show();
             
-            System.out.println("Complaint Management System started with FXML UI");
+            System.out.println("Complaint Management System started - Login page loaded");
         } catch (Exception e) {
-            System.err.println("Error loading Dashboard FXML:");
+            System.err.println("Error loading Login FXML:");
             e.printStackTrace();
         }
     }
