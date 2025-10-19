@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" 
+            xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.complaintmanagement.controller.DashboardController"
+            prefHeight="700.0" 
+            prefWidth="1000.0" 
+            styleClass="dashboard-root">
+    
+    <!-- Top Menu Bar -->
+    <top>
+        <VBox>
+            <!-- Menu Bar -->
+            <MenuBar styleClass="menu-bar">
+                <Menu text="File">
+                    <MenuItem text="Logout" onAction="#handleLogout"/>
+                    <MenuItem text="Exit" onAction="#handleExit"/>
+                </Menu>
+                <Menu text="Complaints">
+                    <MenuItem text="View All" onAction="#handleViewComplaints"/>
+                    <MenuItem text="Add New" onAction="#handleAddComplaint"/>
+                    <MenuItem text="Search" onAction="#handleSearchComplaints"/>
+                </Menu>
+                <Menu text="Citizens">
+                    <MenuItem text="View All" onAction="#handleViewCitizens"/>
+                    <MenuItem text="Add New" onAction="#handleAddCitizen"/>
+                </Menu>
+                <Menu text="Authorities">
+                    <MenuItem text="View All" onAction="#handleViewAuthorities"/>
+                    <MenuItem text="Add New" onAction="#handleAddAuthority"/>
+                </Menu>
+                <Menu text="Reports">
+                    <MenuItem text="Generate Report" onAction="#handleGenerateReport"/>
+                    <MenuItem text="Statistics" onAction="#handleStatistics"/>
+                </Menu>
+                <Menu text="Help">
+                    <MenuItem text="About" onAction="#handleAbout"/>
+                    <MenuItem text="Documentation" onAction="#handleDocumentation"/>
+                </Menu>
+            </MenuBar>
+            
+            <!-- Title Bar -->
+            <HBox alignment="CENTER_LEFT" 
+                  spacing="15.0" 
+                  styleClass="title-bar">
+                <padding>
+                    <Insets top="15.0" right="20.0" bottom="15.0" left="20.0"/>
+                </padding>
+                
+                <Label text="🏛️" styleClass="app-icon">
+                    <font>
+                        <Font size="28.0"/>
+                    </font>
+                </Label>
+                
+                <VBox>
+                    <Label text="Complaint Management System" styleClass="app-title">
+                        <font>
+                            <Font name="Arial Bold" size="20.0"/>
+                        </font>
+                    </Label>
+                    <Label fx:id="welcomeLabel" 
+                           text="Welcome, User" 
+                           styleClass="welcome-text">
+                        <font>
+                            <Font size="12.0"/>
+                        </font>
+                    </Label>
+                </VBox>
+                
+                <!-- Spacer -->
+                <HBox HBox.hgrow="ALWAYS"/>
+                
+                <!-- User Info and Logout -->
+                <HBox spacing="10.0" alignment="CENTER_RIGHT">
+                    <Label fx:id="userRoleLabel" 
+                           text="Admin" 
+                           styleClass="user-role"/>
+                    <Button text="Logout" 
+                            onAction="#handleLogout" 
+                            styleClass="logout-button"/>
+                </HBox>
+            </HBox>
+            
+            <Separator/>
+        </VBox>
+    </top>
+    
+    <!-- Left Navigation Panel -->
+    <left>
+        <VBox spacing="10.0" 
+              styleClass="navigation-panel" 
+              prefWidth="220.0">
+            <padding>
+                <Insets top="20.0" right="15.0" bottom="20.0" left="15.0"/>
+            </padding>
+            
+            <Label text="MAIN MENU" styleClass="nav-header">
+                <font>
+                    <Font name="Arial Bold" size="12.0"/>
+                </font>
+            </Label>
+            
+            <Button fx:id="dashboardNavBtn" 
+                    text="📊 Dashboard" 
+                    onAction="#handleShowDashboard" 
+                    styleClass="nav-button"
+                    maxWidth="Infinity"/>
+            
+            <Button fx:id="complaintsNavBtn" 
+                    text="📝 View Complaints" 
+                    onAction="#handleViewComplaints" 
+                    styleClass="nav-button"
+                    maxWidth="Infinity"/>
+            
+            <Button fx:id="addComplaintNavBtn" 
+                    text="➕ Add Complaint" 
+                    onAction="#handleAddComplaint" 
+                    styleClass="nav-button"
+                    maxWidth="Infinity"/>
+            
+            <Separator/>
+            
+            <Label text="MANAGEMENT" styleClass="nav-header">
+                <font>
+                    <Font name="Arial Bold" size="12.0"/>
+                </font>
+            </Label>
+            
+            <Button fx:id="citizensNavBtn" 
+                    text="👥 Manage Citizens" 
+                    onAction="#handleViewCitizens" 
+                    styleClass="nav-button"
+                    maxWidth="Infinity"/>
+            
+            <Button fx:id="authoritiesNavBtn" 
+                    text="🏢 Manage Authorities" 
+                    onAction="#handleViewAuthorities" 
+                    styleClass="nav-button"
+                    maxWidth="Infinity"/>
+            
+            <Separator/>
+            
+            <Label text="REPORTS" styleClass="nav-header">
+                <font>
+                    <Font name="Arial Bold" size="12.0"/>
+                </font>
+            </Label>
+            
+            <Button fx:id="reportsNavBtn" 
+                    text="📈 Generate Reports" 
+                    onAction="#handleGenerateReport" 
+                    styleClass="nav-button"
+                    maxWidth="Infinity"/>
+            
+            <Button fx:id="statisticsNavBtn" 
+                    text="📊 Statistics" 
+                    onAction="#handleStatistics" 
+                    styleClass="nav-button"
+                    maxWidth="Infinity"/>
+            
+            <!-- Spacer to push settings to bottom -->
+            <VBox VBox.vgrow="ALWAYS"/>
+            
+            <Separator/>
+            
+            <Button fx:id="settingsNavBtn" 
+                    text="⚙️ Settings" 
+                    onAction="#handleSettings" 
+                    styleClass="nav-button"
+                    maxWidth="Infinity"/>
+        </VBox>
+    </left>
+    
+    <!-- Center Content Area -->
+    <center>
+        <StackPane fx:id="contentArea" styleClass="content-area">
+            <padding>
+                <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+            </padding>
+            
+            <!-- Default Dashboard View -->
+            <VBox alignment="CENTER" spacing="20.0" fx:id="defaultDashboardView">
+                <Label text="Welcome to Complaint Management System" styleClass="content-title">
+                    <font>
+                        <Font name="Arial Bold" size="24.0"/>
+                    </font>
+                </Label>
+                
+                <Label text="Select an option from the menu to get started" styleClass="content-subtitle">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                </Label>
+                
+                <!-- Quick Stats Grid -->
+                <HBox spacing="20.0" alignment="CENTER">
+                    <VBox alignment="CENTER" spacing="10.0" styleClass="stat-card">
+                        <padding>
+                            <Insets top="20.0" right="30.0" bottom="20.0" left="30.0"/>
+                        </padding>
+                        <Label text="📝" styleClass="stat-icon">
+                            <font>
+                                <Font size="32.0"/>
+                            </font>
+                        </Label>
+                        <Label fx:id="totalComplaintsLabel" text="0" styleClass="stat-number">
+                            <font>
+                                <Font name="Arial Bold" size="36.0"/>
+                            </font>
+                        </Label>
+                        <Label text="Total Complaints" styleClass="stat-label">
+                            <font>
+                                <Font size="12.0"/>
+                            </font>
+                        </Label>
+                    </VBox>
+                    
+                    <VBox alignment="CENTER" spacing="10.0" styleClass="stat-card">
+                        <padding>
+                            <Insets top="20.0" right="30.0" bottom="20.0" left="30.0"/>
+                        </padding>
+                        <Label text="⏳" styleClass="stat-icon">
+                            <font>
+                                <Font size="32.0"/>
+                            </font>
+                        </Label>
+                        <Label fx:id="pendingComplaintsLabel" text="0" styleClass="stat-number">
+                            <font>
+                                <Font name="Arial Bold" size="36.0"/>
+                            </font>
+                        </Label>
+                        <Label text="Pending" styleClass="stat-label">
+                            <font>
+                                <Font size="12.0"/>
+                            </font>
+                        </Label>
+                    </VBox>
+                    
+                    <VBox alignment="CENTER" spacing="10.0" styleClass="stat-card">
+                        <padding>
+                            <Insets top="20.0" right="30.0" bottom="20.0" left="30.0"/>
+                        </padding>
+                        <Label text="✅" styleClass="stat-icon">
+                            <font>
+                                <Font size="32.0"/>
+                            </font>
+                        </Label>
+                        <Label fx:id="resolvedComplaintsLabel" text="0" styleClass="stat-number">
+                            <font>
+                                <Font name="Arial Bold" size="36.0"/>
+                            </font>
+                        </Label>
+                        <Label text="Resolved" styleClass="stat-label">
+                            <font>
+                                <Font size="12.0"/>
+                            </font>
+                        </Label>
+                    </VBox>
+                </HBox>
+            </VBox>
+        </StackPane>
+    </center>
+    
+    <!-- Bottom Status Bar -->
+    <bottom>
+        <HBox alignment="CENTER_LEFT" 
+              spacing="15.0" 
+              styleClass="status-bar">
+            <padding>
+                <Insets top="8.0" right="15.0" bottom="8.0" left="15.0"/>
+            </padding>
+            
+            <Label fx:id="statusLabel" text="Ready" styleClass="status-text">
+                <font>
+                    <Font size="11.0"/>
+                </font>
+            </Label>
+            
+            <!-- Spacer -->
+            <HBox HBox.hgrow="ALWAYS"/>
+            
+            <Label fx:id="dateTimeLabel" text="Date/Time" styleClass="datetime-text">
+                <font>
+                    <Font size="11.0"/>
+                </font>
+            </Label>
+        </HBox>
+    </bottom>
+    
+</BorderPane>

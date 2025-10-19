@@ -34,7 +34,9 @@ public class DatabaseConfig {
             logConfiguration();
         } catch (Exception e) {
             System.err.println("Failed to initialize database configuration: " + e.getMessage());
-            throw new RuntimeException("Database configuration failed", e);
+            System.err.println("The application will continue without database functionality.");
+            // Don't throw exception - allow application to start without database
+            entityManagerFactory = null;
         }
     }
     
@@ -80,11 +82,41 @@ public class DatabaseConfig {
         };
         
         for (String[] mapping : mappings) {
-            String value = appProperties.getProperty(mapping[0]);
+            String value = resolveProperty(appProperties.getProperty(mapping[0]));
             if (value != null) {
                 databaseProperties.setProperty(mapping[1], value);
             }
         }
+        
+        // Always set Oracle JDBC driver for Oracle connections
+        String dbUrl = databaseProperties.getProperty("jakarta.persistence.jdbc.url");
+        if (dbUrl != null && dbUrl.contains("oracle")) {
+            databaseProperties.setProperty("jakarta.persistence.jdbc.driver", "oracle.jdbc.OracleDriver");
+        }
+    }
+    
+    /**
+     * Resolve property placeholders like ${ENV_VAR:default_value}
+     */
+    private static String resolveProperty(String value) {
+        if (value == null) return null;
+        
+        // Handle ${ENV_VAR:default_value} syntax
+        if (value.startsWith("${") && value.endsWith("}")) {
+            String placeholder = value.substring(2, value.length() - 1);
+            String[] parts = placeholder.split(":", 2);
+            String envVar = parts[0];
+            String defaultValue = parts.length > 1 ? parts[1] : null;
+            
+            String envValue = System.getenv(envVar);
+            if (envValue != null && !envValue.trim().isEmpty()) {
+                return envValue;
+            } else {
+                return defaultValue;
+            }
+        }
+        
+        return value;
     }
     
     /**
@@ -144,7 +176,8 @@ public class DatabaseConfig {
      */
     public static EntityManagerFactory getEntityManagerFactory() {
         if (entityManagerFactory == null) {
-            throw new IllegalStateException("EntityManagerFactory not initialized");
+            System.err.println("Database not available - EntityManagerFactory not initialized");
+            return null;
         }
         return entityManagerFactory;
     }
@@ -155,6 +188,11 @@ public class DatabaseConfig {
     public static boolean testConnection() {
         try {
             EntityManagerFactory emf = getEntityManagerFactory();
+            if (emf == null) {
+                System.err.println("❌ Database connection test failed: EntityManagerFactory not available");
+                return false;
+            }
+            
             var em = emf.createEntityManager();
             em.getTransaction().begin();
             

@@ -10,35 +10,35 @@
         <!-- Entity classes will be added here as they are created -->
         <!-- No entity classes configured yet -->
         
+        <!-- Entity classes -->
+        <class>com.complaintmanagement.model.Citizen</class>
+        <class>com.complaintmanagement.model.Complaint</class>
+        <class>com.complaintmanagement.model.Authority</class>
+        <class>com.complaintmanagement.model.Response</class>
+        
         <!-- Database Connection Properties -->
-        <!-- These will be overridden by system properties for security -->
+        <!-- Oracle Database Configuration -->
         <properties>
-            <!-- Database Connection -->
+            <!-- Database Connection - Oracle -->
             <property name="jakarta.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
-            <property name="jakarta.persistence.jdbc.url" value="${DB_URL}"/>
-            <property name="jakarta.persistence.jdbc.user" value="${DB_USERNAME}"/>
-            <property name="jakarta.persistence.jdbc.password" value="${DB_PASSWORD}"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+            <property name="jakarta.persistence.jdbc.user" value="system"/>
+            <property name="jakarta.persistence.jdbc.password" value="kavinkishore"/>
             
             <!-- Hibernate Specific Properties -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.OracleDialect"/>
-            <property name="hibernate.hbm2ddl.auto" value="validate"/>
-            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
             
             <!-- Connection Pool Settings -->
             <property name="hibernate.connection.pool_size" value="10"/>
             <property name="hibernate.connection.autocommit" value="false"/>
             
-            <!-- Transaction Management -->
-            <property name="hibernate.current_session_context_class" value="thread"/>
-            
             <!-- Performance Settings -->
             <property name="hibernate.jdbc.batch_size" value="25"/>
             <property name="hibernate.order_inserts" value="true"/>
             <property name="hibernate.order_updates" value="true"/>
-            
-            <!-- Security: Disable SQL logging in production -->
-            <property name="hibernate.session.events.log.LOG_QUERIES_SLOWER_THAN_MS" value="0"/>
         </properties>
         
     </persistence-unit>

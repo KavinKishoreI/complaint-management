@@ -75,7 +75,7 @@ env.example
 *.db
 *.sqlite
 *.sqlite3
-
+*.docx 
 # OS generated files
 .DS_Store
 .DS_Store?
