@@ -1,0 +1,318 @@
+/* Register Complaint Page Stylesheet */
+
+/* Root Container */
+.root-container {
+  -fx-background-color: #f5f7fa;
+}
+
+/* Header Section */
+.header-section {
+  -fx-background-color: linear-gradient(to right, #667eea 0%, #764ba2 100%);
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 3);
+}
+
+.page-title {
+  -fx-text-fill: white;
+  -fx-font-weight: bold;
+}
+
+.subtitle {
+  -fx-text-fill: rgba(255, 255, 255, 0.95);
+  -fx-font-style: italic;
+}
+
+.user-info-label {
+  -fx-text-fill: white;
+  -fx-background-color: rgba(255, 255, 255, 0.2);
+  -fx-background-radius: 5px;
+  -fx-padding: 8px 15px;
+}
+
+.back-button {
+  -fx-background-color: rgba(255, 255, 255, 0.3);
+  -fx-text-fill: white;
+  -fx-background-radius: 5px;
+  -fx-cursor: hand;
+  -fx-padding: 8px 15px;
+  -fx-border-color: rgba(255, 255, 255, 0.5);
+  -fx-border-radius: 5px;
+  -fx-border-width: 1px;
+}
+
+.back-button:hover {
+  -fx-background-color: rgba(255, 255, 255, 0.4);
+  -fx-scale-x: 1.02;
+  -fx-scale-y: 1.02;
+}
+
+.back-button:pressed {
+  -fx-background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Scroll Pane */
+.scroll-pane {
+  -fx-background-color: transparent;
+  -fx-background: transparent;
+}
+
+.scroll-pane > .viewport {
+  -fx-background-color: transparent;
+}
+
+/* Form Container */
+.form-container {
+  -fx-background-color: white;
+  -fx-background-radius: 10px;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 2);
+  -fx-max-width: 900px;
+  -fx-alignment: center;
+}
+
+/* Field Sections */
+.field-section {
+  -fx-spacing: 8px;
+}
+
+.field-label {
+  -fx-text-fill: #2c3e50;
+  -fx-font-weight: bold;
+}
+
+/* Text Field */
+.text-field {
+  -fx-background-color: #f8f9fa;
+  -fx-background-radius: 8px;
+  -fx-border-color: #e0e0e0;
+  -fx-border-radius: 8px;
+  -fx-border-width: 1.5px;
+  -fx-padding: 10px 15px;
+  -fx-font-size: 13px;
+  -fx-text-fill: #2c3e50;
+}
+
+.text-field:focused {
+  -fx-border-color: #667eea;
+  -fx-border-width: 2px;
+  -fx-background-color: white;
+  -fx-effect: dropshadow(gaussian, rgba(102, 126, 234, 0.3), 8, 0, 0, 0);
+}
+
+/* ComboBox */
+.combo-box {
+  -fx-background-color: #f8f9fa;
+  -fx-background-radius: 8px;
+  -fx-border-color: #e0e0e0;
+  -fx-border-radius: 8px;
+  -fx-border-width: 1.5px;
+  -fx-font-size: 13px;
+}
+
+.combo-box:focused {
+  -fx-border-color: #667eea;
+  -fx-border-width: 2px;
+  -fx-background-color: white;
+  -fx-effect: dropshadow(gaussian, rgba(102, 126, 234, 0.3), 8, 0, 0, 0);
+}
+
+.combo-box .list-cell {
+  -fx-background-color: transparent;
+  -fx-text-fill: #2c3e50;
+  -fx-padding: 8px 15px;
+}
+
+.combo-box .list-cell:hover {
+  -fx-background-color: #f0f0f0;
+}
+
+.combo-box-popup .list-view {
+  -fx-background-color: white;
+  -fx-border-color: #e0e0e0;
+  -fx-border-radius: 5px;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 3);
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected,
+.combo-box-popup .list-view .list-cell:filled:selected:hover {
+  -fx-background-color: #667eea;
+  -fx-text-fill: white;
+}
+
+/* TextArea */
+.text-area {
+  -fx-background-color: #f8f9fa;
+  -fx-background-radius: 8px;
+  -fx-border-color: #e0e0e0;
+  -fx-border-radius: 8px;
+  -fx-border-width: 1.5px;
+  -fx-padding: 10px 15px;
+  -fx-font-size: 13px;
+  -fx-font-family: "Arial", "Segoe UI", sans-serif;
+  -fx-text-fill: #2c3e50;
+}
+
+.text-area:focused {
+  -fx-border-color: #667eea;
+  -fx-border-width: 2px;
+  -fx-background-color: white;
+  -fx-effect: dropshadow(gaussian, rgba(102, 126, 234, 0.3), 8, 0, 0, 0);
+}
+
+.text-area .content {
+  -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane {
+  -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .viewport {
+  -fx-background-color: transparent;
+}
+
+/* Character Count */
+.char-count {
+  -fx-text-fill: #7f8c8d;
+  -fx-font-style: italic;
+}
+
+/* Error Labels */
+.error-label {
+  -fx-text-fill: #e74c3c;
+  -fx-font-size: 11px;
+  -fx-font-style: italic;
+}
+
+/* Help Text */
+.help-text {
+  -fx-text-fill: #7f8c8d;
+  -fx-font-style: italic;
+}
+
+.help-title {
+  -fx-text-fill: #3498db;
+}
+
+.help-section {
+  -fx-background-color: #eef6fc;
+  -fx-background-radius: 8px;
+  -fx-padding: 15px;
+  -fx-border-color: #d6eaf8;
+  -fx-border-radius: 8px;
+  -fx-border-width: 1px;
+}
+
+/* Status Label */
+.status-label {
+  -fx-font-weight: bold;
+  -fx-padding: 12px 20px;
+  -fx-background-radius: 8px;
+  -fx-border-radius: 8px;
+  -fx-border-width: 1px;
+}
+
+.status-success {
+  -fx-text-fill: #27ae60;
+  -fx-background-color: rgba(39, 174, 96, 0.1);
+  -fx-border-color: #27ae60;
+}
+
+.status-error {
+  -fx-text-fill: #e74c3c;
+  -fx-background-color: rgba(231, 76, 60, 0.1);
+  -fx-border-color: #e74c3c;
+}
+
+.status-warning {
+  -fx-text-fill: #f39c12;
+  -fx-background-color: rgba(243, 156, 18, 0.1);
+  -fx-border-color: #f39c12;
+}
+
+/* Button Section */
+.button-section {
+  -fx-alignment: center;
+}
+
+/* Submit Button */
+.submit-button {
+  -fx-background-color: linear-gradient(to bottom, #27ae60 0%, #229954 100%);
+  -fx-text-fill: white;
+  -fx-background-radius: 8px;
+  -fx-cursor: hand;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 2);
+  -fx-font-weight: bold;
+}
+
+.submit-button:hover {
+  -fx-background-color: linear-gradient(to bottom, #229954 0%, #1e8449 100%);
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 8, 0, 0, 3);
+  -fx-scale-x: 1.03;
+  -fx-scale-y: 1.03;
+}
+
+.submit-button:pressed {
+  -fx-background-color: linear-gradient(to bottom, #1e8449 0%, #196f3d 100%);
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 3, 0, 0, 1);
+}
+
+.submit-button:disabled {
+  -fx-background-color: #bdc3c7;
+  -fx-opacity: 0.6;
+  -fx-cursor: default;
+}
+
+/* Clear Button */
+.clear-button {
+  -fx-background-color: #ecf0f1;
+  -fx-text-fill: #2c3e50;
+  -fx-background-radius: 8px;
+  -fx-cursor: hand;
+  -fx-border-color: #bdc3c7;
+  -fx-border-width: 1.5px;
+  -fx-border-radius: 8px;
+}
+
+.clear-button:hover {
+  -fx-background-color: #d5dbdb;
+  -fx-border-color: #95a5a6;
+}
+
+.clear-button:pressed {
+  -fx-background-color: #bdc3c7;
+}
+
+/* Cancel Button */
+.cancel-button {
+  -fx-background-color: white;
+  -fx-text-fill: #e74c3c;
+  -fx-background-radius: 8px;
+  -fx-cursor: hand;
+  -fx-border-color: #e74c3c;
+  -fx-border-width: 1.5px;
+  -fx-border-radius: 8px;
+}
+
+.cancel-button:hover {
+  -fx-background-color: #e74c3c;
+  -fx-text-fill: white;
+}
+
+.cancel-button:pressed {
+  -fx-background-color: #c0392b;
+  -fx-border-color: #c0392b;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    -fx-opacity: 0;
+  }
+  to {
+    -fx-opacity: 1;
+  }
+}
+
+.fade-in {
+  -fx-opacity: 0;
+  animation: fadeIn 0.5s ease-in forwards;
+}

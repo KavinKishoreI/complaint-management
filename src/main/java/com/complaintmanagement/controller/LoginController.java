@@ -164,15 +164,16 @@ public class LoginController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Dashboard.fxml"));
             Parent root = loader.load();
             
-            // Get the dashboard controller and pass user information if needed
-            // DashboardController dashboardController = loader.getController();
-            // dashboardController.initializeUser(userType, userId, userName);
+            // Get the dashboard controller and pass user information
+            DashboardController dashboardController = loader.getController();
+            dashboardController.initializeUser(userType, userId, userName);
             
             // Get current stage and set new scene
             Stage stage = (Stage) loginButton.getScene().getWindow();
             Scene scene = new Scene(root, 1000, 700);
             stage.setScene(scene);
             stage.setTitle("Complaint Management System - Dashboard");
+            stage.setResizable(true);
             stage.show();
             
             System.out.println("Dashboard opened for " + userType + ": " + userName);
