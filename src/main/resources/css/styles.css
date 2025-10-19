@@ -396,3 +396,24 @@
 .shadow {
   -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 10, 0, 0, 3);
 }
+
+/* Status Label Styles */
+.status-success {
+  -fx-text-fill: #27ae60;
+  -fx-font-weight: bold;
+}
+
+.status-error {
+  -fx-text-fill: #e74c3c;
+  -fx-font-weight: bold;
+}
+
+.status-warning {
+  -fx-text-fill: #f39c12;
+  -fx-font-weight: bold;
+}
+
+.status-info {
+  -fx-text-fill: #3498db;
+  -fx-font-weight: bold;
+}
