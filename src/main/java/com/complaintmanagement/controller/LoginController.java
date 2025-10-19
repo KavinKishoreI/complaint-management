@@ -13,7 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import java.io.IOException;
+
 
 /**
  * Controller class for the Login page.
@@ -26,9 +26,6 @@ public class LoginController {
     
     @FXML
     private PasswordField passwordField;
-    
-    @FXML
-    private CheckBox rememberMeCheckbox;
     
     @FXML
     private Button loginButton;
@@ -216,23 +213,9 @@ public class LoginController {
     private void handleClear(ActionEvent event) {
         usernameField.clear();
         passwordField.clear();
-        rememberMeCheckbox.setSelected(false);
         statusLabel.setVisible(false);
         usernameField.requestFocus();
         System.out.println("Login form cleared");
-    }
-    
-    /**
-     * Handles the forgot password link click
-     */
-    @FXML
-    private void handleForgotPassword(ActionEvent event) {
-        // TODO: Implement password recovery functionality
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Forgot Password");
-        alert.setHeaderText("Password Recovery");
-        alert.setContentText("Please contact the administrator to reset your password.\n\nEmail: admin@complaintmanagement.com\nPhone: +1-234-567-8900");
-        alert.showAndWait();
     }
     
     /**

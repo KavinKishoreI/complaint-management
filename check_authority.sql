@@ -1,0 +1,14 @@
+-- Quick check for authority test data
+SELECT 'AUTHORITIES' as TABLE_NAME, COUNT(*) as COUNT FROM AUTHORITIES;
+SELECT * FROM AUTHORITIES WHERE username = 'testauth';
+
+SELECT 'DEPARTMENTS' as TABLE_NAME, COUNT(*) as COUNT FROM DEPARTMENTS;
+SELECT * FROM DEPARTMENTS;
+
+SELECT 'COMPLAINTS BY DEPARTMENT' as INFO, d.dept_name, COUNT(c.complaint_id) as COMPLAINT_COUNT
+FROM DEPARTMENTS d
+LEFT JOIN COMPLAINTS c ON d.dept_id = c.department_id
+GROUP BY d.dept_name
+ORDER BY d.dept_name;
+
+EXIT;
