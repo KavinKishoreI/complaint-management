@@ -1,14 +1,14 @@
-/* Register Complaint Page Stylesheet */
+/* Register Complaint Page Stylesheet - Dark Mode */
 
 /* Root Container */
 .root-container {
-  -fx-background-color: #f5f7fa;
+  -fx-background-color: #1a1a1a;
 }
 
 /* Header Section */
 .header-section {
-  -fx-background-color: linear-gradient(to right, #667eea 0%, #764ba2 100%);
-  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 3);
+  -fx-background-color: linear-gradient(to right, #5a4fcf 0%, #6b3fa0 100%);
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 10, 0, 0, 3);
 }
 
 .page-title {
@@ -17,7 +17,7 @@
 }
 
 .subtitle {
-  -fx-text-fill: rgba(255, 255, 255, 0.95);
+  -fx-text-fill: rgba(255, 255, 255, 0.9);
   -fx-font-style: italic;
 }
 
@@ -29,24 +29,24 @@
 }
 
 .back-button {
-  -fx-background-color: rgba(255, 255, 255, 0.3);
+  -fx-background-color: rgba(255, 255, 255, 0.25);
   -fx-text-fill: white;
   -fx-background-radius: 5px;
   -fx-cursor: hand;
   -fx-padding: 8px 15px;
-  -fx-border-color: rgba(255, 255, 255, 0.5);
+  -fx-border-color: rgba(255, 255, 255, 0.4);
   -fx-border-radius: 5px;
   -fx-border-width: 1px;
 }
 
 .back-button:hover {
-  -fx-background-color: rgba(255, 255, 255, 0.4);
+  -fx-background-color: rgba(255, 255, 255, 0.35);
   -fx-scale-x: 1.02;
   -fx-scale-y: 1.02;
 }
 
 .back-button:pressed {
-  -fx-background-color: rgba(255, 255, 255, 0.2);
+  -fx-background-color: rgba(255, 255, 255, 0.15);
 }
 
 /* Scroll Pane */
@@ -61,9 +61,9 @@
 
 /* Form Container */
 .form-container {
-  -fx-background-color: white;
+  -fx-background-color: #252525;
   -fx-background-radius: 10px;
-  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 2);
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 2);
   -fx-max-width: 900px;
   -fx-alignment: center;
 }
@@ -74,34 +74,34 @@
 }
 
 .field-label {
-  -fx-text-fill: #2c3e50;
+  -fx-text-fill: #e0e0e0;
   -fx-font-weight: bold;
 }
 
 /* Text Field */
 .text-field {
-  -fx-background-color: #f8f9fa;
+  -fx-background-color: #1e1e1e;
   -fx-background-radius: 8px;
-  -fx-border-color: #e0e0e0;
+  -fx-border-color: #3a3a3a;
   -fx-border-radius: 8px;
   -fx-border-width: 1.5px;
   -fx-padding: 10px 15px;
   -fx-font-size: 13px;
-  -fx-text-fill: #2c3e50;
+  -fx-text-fill: #ffffff;
 }
 
 .text-field:focused {
   -fx-border-color: #667eea;
   -fx-border-width: 2px;
-  -fx-background-color: white;
-  -fx-effect: dropshadow(gaussian, rgba(102, 126, 234, 0.3), 8, 0, 0, 0);
+  -fx-background-color: #2a2a2a;
+  -fx-effect: dropshadow(gaussian, rgba(102, 126, 234, 0.4), 8, 0, 0, 0);
 }
 
 /* ComboBox */
 .combo-box {
-  -fx-background-color: #f8f9fa;
+  -fx-background-color: #1e1e1e;
   -fx-background-radius: 8px;
-  -fx-border-color: #e0e0e0;
+  -fx-border-color: #3a3a3a;
   -fx-border-radius: 8px;
   -fx-border-width: 1.5px;
   -fx-font-size: 13px;
@@ -110,25 +110,25 @@
 .combo-box:focused {
   -fx-border-color: #667eea;
   -fx-border-width: 2px;
-  -fx-background-color: white;
-  -fx-effect: dropshadow(gaussian, rgba(102, 126, 234, 0.3), 8, 0, 0, 0);
+  -fx-background-color: #2a2a2a;
+  -fx-effect: dropshadow(gaussian, rgba(102, 126, 234, 0.4), 8, 0, 0, 0);
 }
 
 .combo-box .list-cell {
   -fx-background-color: transparent;
-  -fx-text-fill: #2c3e50;
+  -fx-text-fill: #e0e0e0;
   -fx-padding: 8px 15px;
 }
 
 .combo-box .list-cell:hover {
-  -fx-background-color: #f0f0f0;
+  -fx-background-color: #2a2a2a;
 }
 
 .combo-box-popup .list-view {
-  -fx-background-color: white;
-  -fx-border-color: #e0e0e0;
+  -fx-background-color: #252525;
+  -fx-border-color: #3a3a3a;
   -fx-border-radius: 5px;
-  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 3);
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 10, 0, 0, 3);
 }
 
 .combo-box-popup .list-view .list-cell:filled:selected,
@@ -139,22 +139,22 @@
 
 /* TextArea */
 .text-area {
-  -fx-background-color: #f8f9fa;
+  -fx-background-color: #1e1e1e;
   -fx-background-radius: 8px;
-  -fx-border-color: #e0e0e0;
+  -fx-border-color: #3a3a3a;
   -fx-border-radius: 8px;
   -fx-border-width: 1.5px;
   -fx-padding: 10px 15px;
   -fx-font-size: 13px;
   -fx-font-family: "Arial", "Segoe UI", sans-serif;
-  -fx-text-fill: #2c3e50;
+  -fx-text-fill: #ffffff;
 }
 
 .text-area:focused {
   -fx-border-color: #667eea;
   -fx-border-width: 2px;
-  -fx-background-color: white;
-  -fx-effect: dropshadow(gaussian, rgba(102, 126, 234, 0.3), 8, 0, 0, 0);
+  -fx-background-color: #2a2a2a;
+  -fx-effect: dropshadow(gaussian, rgba(102, 126, 234, 0.4), 8, 0, 0, 0);
 }
 
 .text-area .content {
@@ -171,32 +171,32 @@
 
 /* Character Count */
 .char-count {
-  -fx-text-fill: #7f8c8d;
+  -fx-text-fill: #9a9a9a;
   -fx-font-style: italic;
 }
 
 /* Error Labels */
 .error-label {
-  -fx-text-fill: #e74c3c;
+  -fx-text-fill: #ff6b6b;
   -fx-font-size: 11px;
   -fx-font-style: italic;
 }
 
 /* Help Text */
 .help-text {
-  -fx-text-fill: #7f8c8d;
+  -fx-text-fill: #9a9a9a;
   -fx-font-style: italic;
 }
 
 .help-title {
-  -fx-text-fill: #3498db;
+  -fx-text-fill: #6bb6ff;
 }
 
 .help-section {
-  -fx-background-color: #eef6fc;
+  -fx-background-color: #1e2a3a;
   -fx-background-radius: 8px;
   -fx-padding: 15px;
-  -fx-border-color: #d6eaf8;
+  -fx-border-color: #2a3a4a;
   -fx-border-radius: 8px;
   -fx-border-width: 1px;
 }
@@ -211,21 +211,21 @@
 }
 
 .status-success {
-  -fx-text-fill: #27ae60;
-  -fx-background-color: rgba(39, 174, 96, 0.1);
-  -fx-border-color: #27ae60;
+  -fx-text-fill: #51cf66;
+  -fx-background-color: rgba(81, 207, 102, 0.15);
+  -fx-border-color: #51cf66;
 }
 
 .status-error {
-  -fx-text-fill: #e74c3c;
-  -fx-background-color: rgba(231, 76, 60, 0.1);
-  -fx-border-color: #e74c3c;
+  -fx-text-fill: #ff6b6b;
+  -fx-background-color: rgba(255, 107, 107, 0.15);
+  -fx-border-color: #ff6b6b;
 }
 
 .status-warning {
-  -fx-text-fill: #f39c12;
-  -fx-background-color: rgba(243, 156, 18, 0.1);
-  -fx-border-color: #f39c12;
+  -fx-text-fill: #ffd93d;
+  -fx-background-color: rgba(255, 217, 61, 0.15);
+  -fx-border-color: #ffd93d;
 }
 
 /* Button Section */
@@ -263,43 +263,43 @@
 
 /* Clear Button */
 .clear-button {
-  -fx-background-color: #ecf0f1;
-  -fx-text-fill: #2c3e50;
+  -fx-background-color: #2d2d2d;
+  -fx-text-fill: #e0e0e0;
   -fx-background-radius: 8px;
   -fx-cursor: hand;
-  -fx-border-color: #bdc3c7;
+  -fx-border-color: #4a4a4a;
   -fx-border-width: 1.5px;
   -fx-border-radius: 8px;
 }
 
 .clear-button:hover {
-  -fx-background-color: #d5dbdb;
-  -fx-border-color: #95a5a6;
+  -fx-background-color: #3a3a3a;
+  -fx-border-color: #5a5a5a;
 }
 
 .clear-button:pressed {
-  -fx-background-color: #bdc3c7;
+  -fx-background-color: #1e1e1e;
 }
 
 /* Cancel Button */
 .cancel-button {
-  -fx-background-color: white;
-  -fx-text-fill: #e74c3c;
+  -fx-background-color: #2d2d2d;
+  -fx-text-fill: #ff6b6b;
   -fx-background-radius: 8px;
   -fx-cursor: hand;
-  -fx-border-color: #e74c3c;
+  -fx-border-color: #ff6b6b;
   -fx-border-width: 1.5px;
   -fx-border-radius: 8px;
 }
 
 .cancel-button:hover {
-  -fx-background-color: #e74c3c;
+  -fx-background-color: #ff6b6b;
   -fx-text-fill: white;
 }
 
 .cancel-button:pressed {
-  -fx-background-color: #c0392b;
-  -fx-border-color: #c0392b;
+  -fx-background-color: #ff5252;
+  -fx-border-color: #ff5252;
 }
 
 /* Animations */
