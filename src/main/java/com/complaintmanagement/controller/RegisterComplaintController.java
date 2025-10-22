@@ -414,9 +414,18 @@ public class RegisterComplaintController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Dashboard.fxml"));
             Parent root = loader.load();
             
+            // Pass user information back to DashboardController
+            DashboardController controller = loader.getController();
+            if (currentCitizenId != null && currentCitizenName != null) {
+                controller.initializeUser("Citizen", currentCitizenId, currentCitizenName);
+            }
+            
+            // Apply CSS
+            Scene scene = new Scene(root, 1000, 700);
+            scene.getStylesheets().add(getClass().getResource("/css/dashboard.css").toExternalForm());
+            
             // Get current stage and set new scene
             Stage stage = (Stage) backButton.getScene().getWindow();
-            Scene scene = new Scene(root, 1000, 700);
             stage.setScene(scene);
             stage.setTitle("Complaint Management System - Dashboard");
             stage.show();

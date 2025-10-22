@@ -1,13 +1,13 @@
-/* Authority Dashboard - Dark Mode Styles */
+/* Authority Dashboard - Light Mode (Blue-White Theme) */
 
 .dashboard-root {
-  -fx-background-color: #1a1a1a;
+  -fx-background-color: #f5f5f5;
 }
 
 /* Header Section */
 .header-section {
-  -fx-background-color: linear-gradient(to right, #e74c3c 0%, #c0392b 100%);
-  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 2);
+  -fx-background-color: linear-gradient(to right, #1976d2 0%, #1565c0 100%);
+  -fx-effect: dropshadow(gaussian, rgba(25, 118, 210, 0.3), 10, 0, 0, 2);
 }
 
 .header-title {
@@ -16,7 +16,7 @@
 }
 
 .header-subtitle {
-  -fx-text-fill: #ecf0f1;
+  -fx-text-fill: #e3f2fd;
 }
 
 .logout-button {
@@ -29,13 +29,13 @@
 }
 
 .logout-button:hover {
-  -fx-background-color: rgba(255, 255, 255, 0.3);
+  -fx-background-color: rgba(255, 255, 255, 0.35);
 }
 
 /* Scroll Pane */
 .content-scroll {
   -fx-background-color: transparent;
-  -fx-background: #1a1a1a;
+  -fx-background: #f5f5f5;
 }
 
 .content-scroll .viewport {
@@ -43,7 +43,7 @@
 }
 
 .content-scroll > .scroll-bar:vertical {
-  -fx-background-color: #2a2a2a;
+  -fx-background-color: #e0e0e0;
   -fx-pref-width: 10px;
 }
 

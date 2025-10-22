@@ -1,11 +1,11 @@
-/* Login Page Stylesheet - Dark Mode */
+/* Login Page Stylesheet - Light Mode (Blue-White Theme) */
 
 /* Root Container */
 .login-container {
   -fx-background-color: linear-gradient(
     to bottom right,
-    #1a1a2e 0%,
-    #16213e 100%
+    #e3f2fd 0%,
+    #ffffff 100%
   );
   -fx-min-width: 500px;
   -fx-min-height: 600px;
@@ -13,138 +13,141 @@
 
 /* Logo */
 .logo {
-  -fx-text-fill: white;
-  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 3);
+  -fx-text-fill: #1565c0;
+  -fx-effect: dropshadow(gaussian, rgba(21, 101, 192, 0.2), 10, 0, 0, 3);
 }
 
 /* Title */
 .title {
-  -fx-text-fill: white;
+  -fx-text-fill: #0d47a1;
   -fx-font-weight: bold;
-  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 5, 0, 0, 2);
+  -fx-effect: dropshadow(gaussian, rgba(13, 71, 161, 0.15), 5, 0, 0, 2);
 }
 
 /* Subtitle */
 .subtitle {
-  -fx-text-fill: rgba(255, 255, 255, 0.85);
+  -fx-text-fill: #424242;
   -fx-font-style: italic;
 }
 
 /* Form Container */
 .form-container {
-  -fx-background-color: #252525;
+  -fx-background-color: #ffffff;
   -fx-background-radius: 15px;
-  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 15, 0, 0, 5);
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 15, 0, 0, 5);
+  -fx-border-color: #bbdefb;
+  -fx-border-width: 1px;
+  -fx-border-radius: 15px;
 }
 
 /* Field Labels */
 .field-label {
-  -fx-text-fill: #e0e0e0;
+  -fx-text-fill: #212121;
   -fx-font-weight: bold;
 }
 
 /* Text Fields */
 .text-field,
 .password-field {
-  -fx-background-color: #1e1e1e;
+  -fx-background-color: #f5f5f5;
   -fx-background-radius: 5px;
-  -fx-border-color: #3a3a3a;
+  -fx-border-color: #90caf9;
   -fx-border-radius: 5px;
   -fx-border-width: 1px;
   -fx-padding: 10px;
   -fx-font-size: 13px;
-  -fx-text-fill: #ffffff;
+  -fx-text-fill: #000000;
 }
 
 .text-field:focused,
 .password-field:focused {
-  -fx-border-color: #667eea;
+  -fx-border-color: #1976d2;
   -fx-border-width: 2px;
-  -fx-background-color: #2a2a2a;
+  -fx-background-color: #ffffff;
 }
 
 /* Checkbox */
 .checkbox {
-  -fx-text-fill: #b0b0b0;
+  -fx-text-fill: #424242;
 }
 
 .checkbox .box {
-  -fx-background-color: #1e1e1e;
-  -fx-border-color: #3a3a3a;
+  -fx-background-color: #ffffff;
+  -fx-border-color: #90caf9;
   -fx-border-radius: 3px;
 }
 
 .checkbox:selected .mark {
-  -fx-background-color: #667eea;
+  -fx-background-color: #1976d2;
 }
 
 /* Login Button */
 .login-button {
-  -fx-background-color: linear-gradient(to bottom, #667eea 0%, #764ba2 100%);
+  -fx-background-color: linear-gradient(to bottom, #42a5f5 0%, #1976d2 100%);
   -fx-text-fill: white;
   -fx-background-radius: 5px;
   -fx-cursor: hand;
-  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 2);
+  -fx-effect: dropshadow(gaussian, rgba(25, 118, 210, 0.3), 5, 0, 0, 2);
 }
 
 .login-button:hover {
-  -fx-background-color: linear-gradient(to bottom, #5568d3 0%, #6a3f8f 100%);
-  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 8, 0, 0, 3);
+  -fx-background-color: linear-gradient(to bottom, #1e88e5 0%, #1565c0 100%);
+  -fx-effect: dropshadow(gaussian, rgba(25, 118, 210, 0.4), 8, 0, 0, 3);
   -fx-scale-y: 1.02;
 }
 
 .login-button:pressed {
-  -fx-background-color: linear-gradient(to bottom, #4a5bc4 0%, #5d3580 100%);
-  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 3, 0, 0, 1);
+  -fx-background-color: linear-gradient(to bottom, #1565c0 0%, #0d47a1 100%);
+  -fx-effect: dropshadow(gaussian, rgba(25, 118, 210, 0.2), 3, 0, 0, 1);
 }
 
 /* Clear Button */
 .clear-button {
-  -fx-background-color: #2d2d2d;
-  -fx-text-fill: #e0e0e0;
+  -fx-background-color: #e3f2fd;
+  -fx-text-fill: #1565c0;
   -fx-background-radius: 5px;
   -fx-cursor: hand;
-  -fx-border-color: #4a4a4a;
+  -fx-border-color: #90caf9;
   -fx-border-width: 1px;
   -fx-border-radius: 5px;
 }
 
 .clear-button:hover {
-  -fx-background-color: #3a3a3a;
-  -fx-border-color: #5a5a5a;
+  -fx-background-color: #bbdefb;
+  -fx-border-color: #64b5f6;
 }
 
 .clear-button:pressed {
-  -fx-background-color: #1e1e1e;
+  -fx-background-color: #90caf9;
 }
 
 /* Hyperlink */
 .link {
-  -fx-text-fill: #8ab4f8;
+  -fx-text-fill: #1976d2;
   -fx-underline: true;
   -fx-font-size: 12px;
 }
 
 .link:hover {
-  -fx-text-fill: #aac7ff;
+  -fx-text-fill: #1565c0;
 }
 
 /* Status Label */
 .status-label {
-  -fx-text-fill: #ff6b6b;
+  -fx-text-fill: #d32f2f;
   -fx-font-size: 12px;
-  -fx-background-color: rgba(255, 107, 107, 0.15);
+  -fx-background-color: rgba(211, 47, 47, 0.1);
   -fx-padding: 8px;
   -fx-background-radius: 5px;
-  -fx-border-color: #ff6b6b;
+  -fx-border-color: #e57373;
   -fx-border-radius: 5px;
   -fx-border-width: 1px;
 }
 
 .status-label.success {
-  -fx-text-fill: #51cf66;
-  -fx-background-color: rgba(81, 207, 102, 0.15);
-  -fx-border-color: #51cf66;
+  -fx-text-fill: #388e3c;
+  -fx-background-color: rgba(56, 142, 60, 0.1);
+  -fx-border-color: #81c784;
 }
 
 /* Animation for error shake */
